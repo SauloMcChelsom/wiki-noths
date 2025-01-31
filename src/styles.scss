@@ -1,1 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+@include mat.core();
+
+@import './assets/Style/grid.scss';
+@import './assets/Style/breakpoints.scss';
+@import './assets/Style/elevation.scss';
+@import './assets/Style/radius.scss';
+@import './assets/Style/spacing.scss';
+@import './assets/Style/typography.scss';
+@import './assets/Style/standard-class.scss';
+@import './assets/Style/laranjinha/theme.scss';
+
+body.app {
+    background-color: var(--app-background) !important;
+}
