@@ -5,44 +5,56 @@
   ],
   "overrides": [
     {
-      "files": [
-        "*.ts"
-      ],
+      "files": ["*.ts"],
       "extends": [
         "eslint:recommended",
         "plugin:@typescript-eslint/recommended",
         "plugin:@angular-eslint/recommended",
-        "plugin:@angular-eslint/template/process-inline-templates"
+        "plugin:@angular-eslint/template/process-inline-templates",
+        "plugin:prettier/recommended"
       ],
+      "plugins": ["unused-imports", "prettier", "import"],
       "rules": {
-        "@angular-eslint/directive-selector": [
+        // Estilo de código
+        "semi": ["error", "always"], // Garante ponto e vírgula no final de cada linha
+        "quotes": ["error", "single", { "avoidEscape": true }], // Usa aspas simples sempre que possível
+        "no-trailing-spaces": "error", // Remove espaços desnecessários ao final das linhas
+        "eol-last": ["error", "always"], // Garante uma linha vazia no final do arquivo
+        "object-curly-spacing": ["error", "always"], // Espaçamento consistente em objetos { foo: bar }
+
+        // Código mais seguro e limpo
+        "no-console": ["error", { "allow": ["warn", "error"] }], // Permite apenas console.warn e console.error
+        "no-debugger": "error", // Impede o uso de debugger no código
+        "no-var": "error", // Proíbe o uso de var, prefira let ou const
+        "prefer-const": "error", // Sugere const sempre que possível
+        "require-await": "error", // Evita funções async sem await
+
+        // TypeScript e Angular
+        "@typescript-eslint/no-unused-vars": [
           "error",
-          {
-            "type": "attribute",
-            "prefix": "app",
-            "style": "camelCase"
-          }
-        ],
+          { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }
+        ], // Impede variáveis não utilizadas
+        "@typescript-eslint/explicit-member-accessibility": ["error", { "accessibility": "explicit" }], // Exige modificadores public/private nas classes
+        "@typescript-eslint/explicit-function-return-type": ["warn"], // Sugere que funções tenham um tipo de retorno explícito
+        "@typescript-eslint/no-explicit-any": "warn", // Evita uso de "any"
+
+        // Importações e organização do código
+        "unused-imports/no-unused-imports": "error", // Remove importações não utilizadas
+        "import/no-cycle": ["error", { "maxDepth": 1 }], // Evita ciclos de dependência
+
+        // Angular específico
         "@angular-eslint/component-selector": [
           "error",
-          {
-            "type": "element",
-            "prefix": "app",
-            "style": "kebab-case"
-          }
-        ],
-        "@angular-eslint/component-class-suffix": [
-          "error",
-          {
-            "suffixes": ["Component", "Page", "Layout"]
-          }
-        ]
+          { "type": "element", "prefix": "app", "style": "kebab-case" }
+        ], // Define padrão para seletores de componentes
+        "@angular-eslint/component-class-suffix": ["error", { "suffixes": ["Component", "Page", "Layout"] }], // Garante que classes terminem com Component/Page/Layout
+
+        // Regras de Prettier
+        "prettier/prettier": ["error"] // Garante que Prettier siga as regras definidas
       }
     },
     {
-      "files": [
-        "*.html"
-      ],
+      "files": ["*.html"],
       "extends": [
         "plugin:@angular-eslint/template/recommended",
         "plugin:@angular-eslint/template/accessibility"

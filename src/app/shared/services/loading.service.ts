@@ -1,18 +1,16 @@
 import { Injectable, signal } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LoadingService {
+  private loading = signal(false);
 
-  loading = signal(false);
-
-  start() {
+  public start() {
     this.loading.set(true);
   }
 
-  stop() {
+  public stop() {
     this.loading.set(false);
   }
-
 }

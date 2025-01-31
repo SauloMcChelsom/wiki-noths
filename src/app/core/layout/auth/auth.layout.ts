@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 @Component({
@@ -6,6 +6,6 @@ import { RouterModule } from '@angular/router';
   templateUrl: './auth.layout.html',
   styleUrls: ['./auth.layout.scss'],
   standalone: true,
-  imports: [RouterModule]
+  imports: [RouterModule],
 })
 export class AuthLayout {}
