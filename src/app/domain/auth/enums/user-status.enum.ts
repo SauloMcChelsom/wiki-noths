@@ -4,4 +4,7 @@ export enum eUserStatus {
   BLOCKED = 'blocked',
   DELETED = 'deleted',
   PENDING = 'pending',
+  SUSPENDED = 'suspended',
+  REJECTED = 'rejected',
+  APPROVED = 'approved'
 }
