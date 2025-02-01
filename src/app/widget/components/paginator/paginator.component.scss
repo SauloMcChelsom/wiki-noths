@@ -1,0 +1,15 @@
+.paginator {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+button {
+  width: 63px !important;
+  height: 63px !important;
+  border-radius: 90px;
+}
+
+b {
+  font-weight: bold !important;
+}

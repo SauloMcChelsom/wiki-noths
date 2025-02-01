@@ -6,5 +6,5 @@ export enum eUserStatus {
   PENDING = 'pending',
   SUSPENDED = 'suspended',
   REJECTED = 'rejected',
-  APPROVED = 'approved'
+  APPROVED = 'approved',
 }

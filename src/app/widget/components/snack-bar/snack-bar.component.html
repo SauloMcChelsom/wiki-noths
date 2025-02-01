@@ -1,0 +1,9 @@
+<div
+  class="hot-scoreboard {{ typeScoreboardColor }}"
+  [ngClass]="{
+    'hot-scoreboard-open': showSnackBar,
+    'hot-scoreboard-close': !showSnackBar,
+  }"
+>
+  {{ mensagem }}
+</div>

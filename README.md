@@ -6,9 +6,37 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Code scaffolding
+### Comando para analisar e corrigir um arquivo específico
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+`npx eslint --fix caminho/para/seu/arquivo.ts`.
+### Explicação:
+###### `--fix`: Aplica as correções automáticas.
+###### `caminho/para/seu/arquivo.ts`: Caminho do arquivo que você deseja analisar.
+
+###### Isso vai analisar apenas o arquivo especificado e aplicar as correções de linting e formatação definidas nas regras do ESLint e Prettier.
+
+
+### Rodar o comando para corrigir o código automaticamente:
+`npx eslint --fix .`
+
+### Limpar o cache do ESLint e rodar novamente
+`eslint --cache --cache-location node_modules/.cache/eslint --fix`
+
+### Integrar com o VS Code
+`
+{
+  "editor.formatOnSave": true,
+  "eslint.validate": [
+    "javascript",
+    "typescript",
+    "html",
+    "typescriptreact"
+  ],
+  "eslint.alwaysShowStatus": true,
+  "eslint.autoFixOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
+}
+`
 
 ## Build
 

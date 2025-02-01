@@ -1,0 +1,10 @@
+<mat-form-field style="width: 100%">
+  <input matInput type="text" [(ngModel)]="value" placeholder="Pesquisar" />
+  <app-button-cancat
+    *ngIf="value"
+    matSuffix
+    icon="search"
+    [spinner]="spinner"
+    (onClick)="add()"
+  ></app-button-cancat>
+</mat-form-field>
