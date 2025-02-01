@@ -1,5 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, ViewChild, ViewContainerRef } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  ViewChild,
+  ViewContainerRef,
+} from '@angular/core';
 import {
   FormControl,
   FormsModule,
@@ -23,7 +29,7 @@ import { MatInputModule } from '@angular/material/input';
     MatFormFieldModule,
   ],
 })
-export class TextareaComponent {
+export class TextareaComponent implements OnInit {
   @ViewChild('textareaContent', { read: ViewContainerRef, static: false })
   public textareaContent!: ViewContainerRef;
   @Input() public formControl!: FormControl<any>;
