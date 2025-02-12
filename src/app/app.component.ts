@@ -1,7 +1,7 @@
 import { Component, inject, OnInit, Renderer2 } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AngularMaterialModule } from '@core/theme/angular-material.module';
-import { TitleService } from '@domain/internationalization/services/title.service';
+import { NavigationTabTitleService } from '@domain/change-language/services/navigation-tab-title.service';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
@@ -11,8 +11,10 @@ import { TranslateModule } from '@ngx-translate/core';
   standalone: true,
 })
 export class AppComponent implements OnInit {
-  private renderer = inject(Renderer2);
-  private titleService = inject(TitleService);
+  constructor(
+    private titleService: NavigationTabTitleService,
+    private renderer: Renderer2
+  ) { }
 
   public ngOnInit(): void {
     this.titleService.init();

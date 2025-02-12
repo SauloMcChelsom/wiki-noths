@@ -24,8 +24,8 @@ export const routes: Routes = [
         path: '',
         loadChildren: () =>
           import(
-            './domain/internationalization/internationalization.routes'
-          ).then((m) => m.INTERNATIONALIZATION_ROUTES),
+            './domain/change-language/change-language.routes'
+          ).then((m) => m.CHANGE_LANGUAGE_ROUTES),
       },
     ],
   },

@@ -8,7 +8,7 @@ import { LanguageService } from './language.service';
 @Injectable({
   providedIn: 'root',
 })
-export class TranslationService {
+export class LanguageTranslatorService {
   private defaultLang = DEFAULT_LANG;
 
   public constructor(

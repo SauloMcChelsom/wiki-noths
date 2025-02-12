@@ -9,7 +9,7 @@ import { iSelection } from '@domain/internationalization/interfaces/language.int
 import { LanguageMockservice } from '@domain/internationalization/mocks/language.mock';
 import { aLanguage } from '@domain/internationalization/abstracts/language.abstract';
 import { LanguageService } from '@domain/internationalization/services/language.service';
-import { TranslationService } from '@domain/internationalization/services/translation.service';
+import { LanguageTranslatorService } from '@domain/internationalization/services/language-translator.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { SelectOptionComponent } from '@widget/components/select-option/select-option.component';
 
@@ -33,7 +33,7 @@ import { SelectOptionComponent } from '@widget/components/select-option/select-o
       useClass: LanguageMockservice,
     },
     LanguageService,
-    TranslationService,
+    LanguageTranslatorService,
     TranslateService,
   ],
 })
@@ -44,10 +44,10 @@ export class ChangeLanguagePage implements OnInit {
   public selections: iSelection[] = [];
 
   public constructor(
-    private translationService: TranslationService,
+    private translationService: LanguageTranslatorService,
     private translate: TranslateService,
     private lang: LanguageService
-  ) {}
+  ) { }
 
   public ngOnInit(): void {
     this.formControl.setValue(this.default);

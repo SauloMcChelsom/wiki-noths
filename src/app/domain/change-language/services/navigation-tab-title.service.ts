@@ -7,7 +7,7 @@ import { filter, map, switchMap } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root',
 })
-export class TitleService {
+export class NavigationTabTitleService {
   private title: Title = inject(Title);
   private translate: TranslateService = inject(TranslateService);
   private router: Router = inject(Router);

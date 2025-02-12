@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 
-export const INTERNATIONALIZATION_ROUTES: Routes = [
+export const CHANGE_LANGUAGE_ROUTES: Routes = [
   {
     path: '',
     loadComponent: () =>
