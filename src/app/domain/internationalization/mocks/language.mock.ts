@@ -13,7 +13,7 @@ export class LanguageMockservice implements aLanguage {
     { language: 'Espanhol (Colômbia)', prefix: 'es-CO' },
   ];
 
-  constructor() {
+  public constructor() {
     this.favorite$ = new BehaviorSubject({
       language: 'Inglês (Estados Unidos)',
       prefix: 'en-US',

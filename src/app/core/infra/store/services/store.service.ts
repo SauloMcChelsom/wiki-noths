@@ -10,14 +10,13 @@ import {
   of,
   startWith,
   switchMap,
-  tap
+  tap,
 } from 'rxjs';
 import { AppState } from '../interfaces/state.model';
-import { eLoadingState } from '../enums/state.enum';
 import { aStore } from '../abstracts/store.abstract';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class StoreService<T> implements aStore<T> {
   /*Ele armazena o estado atual e permite a atualização do estado ao chamar .next(value).
@@ -32,13 +31,15 @@ export class StoreService<T> implements aStore<T> {
   Qualquer componente pode assinar(subscribe) para obter o estado atualizado.*/
   private state$ = this.stateStore.asObservable();
 
-  constructor(
+  public constructor(
     private storage: aStorage<AppState<T>>,
     private session: aStorage<AppState<T>>,
     private crypto: aCrypto
-  ) { }
+  ) {}
 
-  public initialState(initialState: AppState<T>): Observable<AppState<T> | null> {
+  public initialState(
+    initialState: AppState<T>
+  ): Observable<AppState<T> | null> {
     this.stateStore.next(initialState);
     return this.state$;
   }
@@ -48,13 +49,17 @@ export class StoreService<T> implements aStore<T> {
       filter(Boolean),
       map(selector),
       startWith(this.getFromStorage()),
-      tap((state) => { this.stateStore.next(state); }),
+      tap((state) => {
+        this.stateStore.next(state);
+      }),
       switchMap(() => of(this.stateStore.getValue()!)),
-      map(selector),
+      map(selector)
     );
   }
 
-  public save(updateFn: (state: AppState<T>) => AppState<T>): Observable<boolean> {
+  public save(
+    updateFn: (state: AppState<T>) => AppState<T>
+  ): Observable<boolean> {
     const currentState = this.stateStore.value;
     if (currentState) {
       const newState = updateFn(currentState);
@@ -64,11 +69,15 @@ export class StoreService<T> implements aStore<T> {
     return of(false);
   }
 
-  public update(updateFn: (state: AppState<T>) => AppState<T>): Observable<boolean> {
+  public update(
+    updateFn: (state: AppState<T>) => AppState<T>
+  ): Observable<boolean> {
     return this.save(updateFn);
   }
 
-  public deletById(updateFn: (state: AppState<T>) => AppState<T>): Observable<boolean> {
+  public deletById(
+    updateFn: (state: AppState<T>) => AppState<T>
+  ): Observable<boolean> {
     return this.save(updateFn);
   }
 
@@ -97,7 +106,9 @@ export class StoreService<T> implements aStore<T> {
     if (state.storage.storageStrategy === eStorageStrategy.LOCAL_STORAGE) {
       this.storage.save(state.storage.tableName, dataToStore);
       return of(true);
-    } else if (state.storage.storageStrategy === eStorageStrategy.SESSION_STORAGE) {
+    } else if (
+      state.storage.storageStrategy === eStorageStrategy.SESSION_STORAGE
+    ) {
       this.session.save(state.storage.tableName, dataToStore);
       return of(true);
     }
@@ -111,7 +122,9 @@ export class StoreService<T> implements aStore<T> {
       if (state.storage.storageStrategy === eStorageStrategy.LOCAL_STORAGE) {
         this.storage.delete(state.storage.tableName);
         return of(true);
-      } else if (state.storage.storageStrategy === eStorageStrategy.SESSION_STORAGE) {
+      } else if (
+        state.storage.storageStrategy === eStorageStrategy.SESSION_STORAGE
+      ) {
         this.session.delete(state.storage.tableName);
         return of(true);
       }
@@ -122,7 +135,8 @@ export class StoreService<T> implements aStore<T> {
   private getFromStorage(): AppState<T> | null {
     const currentState = this.stateStore.value;
     if (currentState == null) return null;
-    const { tableName, storageStrategy, encryptionKey } = currentState?.storage as any;
+    const { tableName, storageStrategy, encryptionKey } =
+      currentState?.storage as any;
 
     let storedData: string | null = null;
     if (storageStrategy === eStorageStrategy.LOCAL_STORAGE) {
@@ -134,7 +148,9 @@ export class StoreService<T> implements aStore<T> {
     if (!storedData) return null;
 
     // Se houver chave de criptografia, descriptografa os dados
-    const decryptedData = encryptionKey ? this.crypto.decrypt(storedData, encryptionKey) : storedData;
+    const decryptedData = encryptionKey
+      ? this.crypto.decrypt(storedData, encryptionKey)
+      : storedData;
 
     return JSON.parse(decryptedData);
   }

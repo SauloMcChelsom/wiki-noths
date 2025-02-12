@@ -1,16 +1,16 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 
 @Injectable()
 export abstract class aStore<T> {
-  abstract initialState(initialState: any): void;
+  public abstract initialState(initialState: any): void;
 
-  abstract results(selector: any): any;
+  public abstract results(selector: any | T): any;
 
-  abstract save(updateFn: any): any;
+  public abstract save(updateFn: any | T): any;
 
-  abstract update(updateFn: any): any;
+  public abstract update(updateFn: any | T): any;
 
-  abstract deletById(updateFn: any): any;
+  public abstract deletById(updateFn: any | T): any;
 
-  abstract delete(updateFn: any): any;
+  public abstract delete(updateFn: any | T): any;
 }

@@ -6,7 +6,7 @@ interface LanguageDTO {
 }
 
 export class LanguageMap {
-  static toEntity(dto: LanguageDTO[]): iLanguage[] {
+  public static toEntity(dto: LanguageDTO[]): iLanguage[] {
     return <iLanguage[]>dto.map((value) => {
       return {
         language: value.description,
@@ -15,7 +15,7 @@ export class LanguageMap {
     });
   }
 
-  static toDTO(entity: iLanguage[]): LanguageDTO[] {
+  public static toDTO(entity: iLanguage[]): LanguageDTO[] {
     return <LanguageDTO[]>entity.map((value) => {
       return {
         description: value.language,

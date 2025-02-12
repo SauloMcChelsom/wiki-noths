@@ -26,7 +26,7 @@ import { SelectOptionComponent } from '@widget/components/select-option/select-o
     },
     {
       provide: aStoreState,
-      useClass: LanguageCacheService
+      useClass: LanguageCacheService,
     },
     {
       provide: aLanguage,
@@ -47,7 +47,7 @@ export class ChangeLanguagePage implements OnInit {
     private translationService: TranslationService,
     private translate: TranslateService,
     private lang: LanguageService
-  ) { }
+  ) {}
 
   public ngOnInit(): void {
     this.formControl.setValue(this.default);

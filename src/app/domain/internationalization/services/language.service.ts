@@ -2,15 +2,14 @@ import { Injectable } from '@angular/core';
 import { Observable, switchMap, take, tap } from 'rxjs';
 import { iLanguage } from '../interfaces/language.interface';
 import { aLanguage } from '../abstracts/language.abstract';
-import { LanguageCacheService } from '../caches/language.cache';
 import { aStoreState } from '@core/infra/store/abstracts/store-state.abstract';
 
 @Injectable({ providedIn: 'root' })
 export class LanguageService implements aLanguage {
-  constructor(
+  public constructor(
     private api: aLanguage,
     private cache: aStoreState<iLanguage>
-  ) { }
+  ) {}
 
   public getAllLanguage(): Observable<iLanguage[]> {
     return this.api.getAllLanguage();
@@ -25,7 +24,7 @@ export class LanguageService implements aLanguage {
         return this.api.getLanguage();
       }),
       take(1)
-    )
+    );
   }
 
   public addLanguage(prefix: string): Observable<iLanguage> {

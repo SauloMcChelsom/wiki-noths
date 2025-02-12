@@ -7,6 +7,6 @@ export const INTERNATIONALIZATION_ROUTES: Routes = [
       import('./pages/change-language/change-language.page').then(
         (m) => m.ChangeLanguagePage
       ),
-    data: { title: 'NOTE.HOME' }
+    data: { title: 'NOTE.HOME' },
   },
 ];

@@ -11,10 +11,10 @@ import { TIME_1_SECOND } from '@shared/constants/time.constant';
 type AppStateLang = AppState<iLanguage>;
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LanguageCacheService implements aStoreState<iLanguage> {
-  constructor(private store: aStore<AppStateLang>) {
+  public constructor(private store: aStore<AppStateLang>) {
     this.app();
     setTimeout(() => {
       this.app();
@@ -28,7 +28,8 @@ export class LanguageCacheService implements aStoreState<iLanguage> {
       storage: {
         encryptionKey: environment.payloadStorage.systemLanguage.encryptionKey,
         tableName: environment.payloadStorage.systemLanguage.tableName,
-        storageStrategy: environment.payloadStorage.systemLanguage.storageStrategy,
+        storageStrategy:
+          environment.payloadStorage.systemLanguage.storageStrategy,
       },
     });
   }
