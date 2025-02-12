@@ -1,18 +1,38 @@
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
-import { Language } from '../interfaces/language.interface';
+import { Observable, switchMap, take, tap } from 'rxjs';
+import { iLanguage } from '../interfaces/language.interface';
+import { aLanguage } from '../abstracts/language.abstract';
+import { LanguageCacheService } from '../caches/language.cache';
+import { aStoreState } from '@core/infra/store/abstracts/store-state.abstract';
 
 @Injectable({ providedIn: 'root' })
-export class LanguageService {
-  public getAllLanguage(): Observable<Language[]> {
-    return throwError(() => 'Method not implemented.');
+export class LanguageService implements aLanguage {
+  constructor(
+    private api: aLanguage,
+    private cache: aStoreState<iLanguage>
+  ) { }
+
+  public getAllLanguage(): Observable<iLanguage[]> {
+    return this.api.getAllLanguage();
   }
 
-  public getLanguage(): Observable<Language> {
-    return throwError(() => 'Method not implemented.');
+  public getLanguage(): Observable<iLanguage> {
+    return this.cache.results().pipe(
+      switchMap((lang) => {
+        if (lang.length > 0) {
+          return lang;
+        }
+        return this.api.getLanguage();
+      }),
+      take(1)
+    )
   }
 
-  public addLanguage(prefix: string): Observable<Language> {
-    return throwError(() => 'Method not implemented.' + prefix);
+  public addLanguage(prefix: string): Observable<iLanguage> {
+    return this.cache.delete().pipe(
+      switchMap(() => this.api.addLanguage(prefix)),
+      tap((lang) => this.cache.save(lang)),
+      take(1)
+    );
   }
 }

@@ -7,8 +7,8 @@
     "NOTE.BUTTON_SAVING": "Salvando",
     "NOTE.BUTTON_BACK": "Voltar",
     "NOTE.HOME": "Note Beans - Con Note Beans puedes crear notas que contengan textos, imágenes con notas al pie, grabaciones de voz y música",
-    "NOTE.PAGE ADD": "Agregar una nueva libreta", 
-    "NOTE.PAGE UPDATE": "Actualiza tu libreta", 
+    "NOTE.PAGE ADD": "Agregar una nueva libreta",
+    "NOTE.PAGE UPDATE": "Actualiza tu libreta",
     "NOTE.PAGE_READ_ONE": "Lee tu libreta",
     "NOTE.TITLE_CHANGE_LANG": "Cambiar idioma",
     "NOTE.OPTION_EMPY": "Ningún índice seleccionado",
@@ -76,5 +76,6 @@
     "NOTE.TOKEN_NOT_UNAUTHORIZED": "Token no autorizado.",
     "NOTE.USER_FORBIDDEN_RESOURCE": "El usuario no tiene permiso para acceder a este recurso.",
     "NOTE.EMAIL_NOT_FOUND": "Correo electrónico no encontrado.",
-    "NOTE.FIREBASE_FAILED": "Error en la operación de Firebase."
+    "NOTE.FIREBASE_FAILED": "Error en la operación de Firebase.",
+    "NOTE.NOT_DEFAULT_LANGUAGE": "Não possui idioma padrão"
 }

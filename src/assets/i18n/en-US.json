@@ -7,8 +7,8 @@
   "NOTE.BUTTON_SAVING": "Saving",
   "NOTE.BUTTON_BACK": "Back",
   "NOTE.HOME": "Note Beans - With Note Beans you can create notes containing texts, images with footnotes, voice recordings, and music",
-  "NOTE.PAGE ADD": "Add a new note", 
-  "NOTE.PAGE UPDATE": "Update your note", 
+  "NOTE.PAGE ADD": "Add a new note",
+  "NOTE.PAGE UPDATE": "Update your note",
   "NOTE.PAGE_READ_ONE": "Read your note",
   "NOTE.TITLE_CHANGE_LANG": "Change language",
   "NOTE.OPTION_EMPY": "No Index Selected",
@@ -22,7 +22,7 @@
   "NOTE.LABEL_NAME_TITLE": "Title",
   "NOTE.LABEL_NAME_DESCRIPTION": "Description",
   "NOTE.LABEL_FORM_INVALID": "Invalid form",
-  "NOTE.LABEL_NAME_FIVE": "Name must be at least {{NUM}} characters long", 
+  "NOTE.LABEL_NAME_FIVE": "Name must be at least {{NUM}} characters long",
   "NOTE.LABEL_SAVE_WITH_SUCCESS": "Saved successfully",
   "NOTE.LABEL_LOADING": "Loading....",
   "NOTE.EMAIL_ALREADY_IN_USE": "Email is already in use.",
@@ -76,5 +76,6 @@
   "NOTE.TOKEN_NOT_UNAUTHORIZED": "Token is unauthorized.",
   "NOTE.USER_FORBIDDEN_RESOURCE": "User is forbidden from accessing this resource.",
   "NOTE.EMAIL_NOT_FOUND": "Email not found.",
-  "NOTE.FIREBASE_FAILED": "Firebase operation failed."
+  "NOTE.FIREBASE_FAILED": "Firebase operation failed.",
+  "NOTE.NOT_DEFAULT_LANGUAGE": "Não possui idioma padrão"
 }

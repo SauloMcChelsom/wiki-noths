@@ -76,5 +76,6 @@
   "NOTE.TOKEN_NOT_UNAUTHORIZED": "Token não autorizado.",
   "NOTE.USER_FORBIDDEN_RESOURCE": "Usuário proibido de acessar este recurso.",
   "NOTE.EMAIL_NOT_FOUND": "E-mail não encontrado.",
-  "NOTE.FIREBASE_FAILED": "Falha na operação do Firebase."
+  "NOTE.FIREBASE_FAILED": "Falha na operação do Firebase.",
+  "NOTE.NOT_DEFAULT_LANGUAGE": "Não possui idioma padrão"
 }

@@ -13,4 +13,20 @@ export const routes: Routes = [
       },
     ],
   },
+  {
+    path: 'internationalization',
+    loadComponent: () =>
+      import(
+        './core/layout/internationalization/internationalization.layout'
+      ).then((m) => m.InternationalizationLayout),
+    children: [
+      {
+        path: '',
+        loadChildren: () =>
+          import(
+            './domain/internationalization/internationalization.routes'
+          ).then((m) => m.INTERNATIONALIZATION_ROUTES),
+      },
+    ],
+  },
 ];
