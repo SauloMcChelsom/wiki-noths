@@ -35,7 +35,7 @@ export class StoreService<T> implements aStore<T> {
     private storage: aStorage<AppState<T>>,
     private session: aStorage<AppState<T>>,
     private crypto: aCrypto
-  ) {}
+  ) { }
 
   public initialState(
     initialState: AppState<T>

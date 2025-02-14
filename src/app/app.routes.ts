@@ -14,11 +14,11 @@ export const routes: Routes = [
     ],
   },
   {
-    path: 'internationalization',
+    path: 'change-language',
     loadComponent: () =>
       import(
-        './core/layout/internationalization/internationalization.layout'
-      ).then((m) => m.InternationalizationLayout),
+        './core/layout/change-language/change-language.layout'
+      ).then((m) => m.ChangeLanguageLayout),
     children: [
       {
         path: '',

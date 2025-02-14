@@ -1,6 +1,6 @@
 import { isPlatformBrowser } from '@angular/common';
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
-import { DEFAULT_LANG } from '@domain/internationalization/constants/default.constant';
+import { DEFAULT_LANG } from '@domain/change-language/constants/default.constant';
 import { TranslateService } from '@ngx-translate/core';
 import { catchError, tap, throwError } from 'rxjs';
 import { LanguageService } from './language.service';
