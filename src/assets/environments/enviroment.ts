@@ -34,7 +34,7 @@ export const environment = {
       storageStrategy: eStorageStrategy.LOCAL_STORAGE,
     },
     systemLanguage: {
-      encryptionKey: '', //'5a203b97-53d6-406a-9909-89883e217abb',
+      encryptionKey: '5a203b97-53d6-406a-9909-89883e217abb',
       tableName: 'current-system-language',
       stateKey: '0242ac120003',
       storageStrategy: eStorageStrategy.LOCAL_STORAGE,

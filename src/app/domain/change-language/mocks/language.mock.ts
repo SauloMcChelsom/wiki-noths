@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { iLanguage } from '../interfaces/language.interface';
-import { aLanguage } from '../abstracts/language.abstract';
 
 @Injectable({ providedIn: 'root' })
-export class LanguageMockservice implements aLanguage {
+export class LanguageMockservice {
   private lang$!: BehaviorSubject<iLanguage[]>;
   private favorite$!: BehaviorSubject<iLanguage>;
   private lang: iLanguage[] = [

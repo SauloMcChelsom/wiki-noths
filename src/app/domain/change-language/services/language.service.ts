@@ -1,15 +1,13 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Observable, switchMap, take, tap } from 'rxjs';
 import { iLanguage } from '../interfaces/language.interface';
-import { aLanguage } from '../abstracts/language.abstract';
-import { aStoreState } from '@core/infra/store/abstracts/store-state.abstract';
+import { LanguageMockservice } from '../mocks/language.mock';
+import { LanguageCacheService } from '../caches/language.cache';
 
 @Injectable({ providedIn: 'root' })
-export class LanguageService implements aLanguage {
-  public constructor(
-    private api: aLanguage,
-    private cache: aStoreState<iLanguage>
-  ) {}
+export class LanguageService {
+  private api: LanguageMockservice = inject(LanguageMockservice);
+  private cache: LanguageCacheService = inject(LanguageCacheService);
 
   public getAllLanguage(): Observable<iLanguage[]> {
     return this.api.getAllLanguage();

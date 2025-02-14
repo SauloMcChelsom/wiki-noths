@@ -11,10 +11,10 @@ import { TranslateModule } from '@ngx-translate/core';
   standalone: true,
 })
 export class AppComponent implements OnInit {
-  constructor(
-    private titleService: NavigationTabTitleService,
-    private renderer: Renderer2
-  ) { }
+  private renderer: Renderer2 = inject(Renderer2);
+  private titleService: NavigationTabTitleService = inject(
+    NavigationTabTitleService
+  );
 
   public ngOnInit(): void {
     this.titleService.init();

@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import { aCrypto } from '@core/infra/crypto/abstracts/crypto.abstract';
 import { eStorageStrategy } from '@core/infra/storage/enums/storage.enum';
-import { aStorage } from '@core/infra/storage/abstracts/storage.abstract';
 import {
   BehaviorSubject,
   filter,
@@ -13,12 +11,14 @@ import {
   tap,
 } from 'rxjs';
 import { AppState } from '../interfaces/state.model';
-import { aStore } from '../abstracts/store.abstract';
+import { StorageLocalService } from '@core/infra/storage/services/storage-local.service';
+import { StorageSessionService } from '@core/infra/storage/services/storage-session.service';
+import { CryptoService } from '@core/infra/crypto/services/crypto.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class StoreService<T> implements aStore<T> {
+export class StoreService<T> {
   /*Ele armazena o estado atual e permite a atualização do estado ao chamar .next(value).
   Mantém o último valor armazenado.
   Pode ser atualizado com .next(value).
@@ -32,9 +32,9 @@ export class StoreService<T> implements aStore<T> {
   private state$ = this.stateStore.asObservable();
 
   public constructor(
-    private storage: aStorage<AppState<T>>,
-    private session: aStorage<AppState<T>>,
-    private crypto: aCrypto
+    private storage: StorageLocalService<AppState<T>>,
+    private session: StorageSessionService<AppState<T>>,
+    private crypto: CryptoService<AppState<T>>
   ) { }
 
   public initialState(
@@ -97,9 +97,13 @@ export class StoreService<T> implements aStore<T> {
 
     // Se houver uma chave de criptografia, encripta os dados antes de salvar
     if (state.storage.encryptionKey) {
+      const crypted: any = this.crypto.encrypt(
+        state.items,
+        state.storage.encryptionKey
+      );
       dataToStore = {
         ...state,
-        items: this.crypto.encrypt(state.items, state.storage.encryptionKey),
+        items: [crypted],
       };
     }
 
@@ -148,7 +152,7 @@ export class StoreService<T> implements aStore<T> {
     if (!storedData) return null;
 
     // Se houver chave de criptografia, descriptografa os dados
-    const decryptedData = encryptionKey
+    const decryptedData: any = encryptionKey
       ? this.crypto.decrypt(storedData, encryptionKey)
       : storedData;
 

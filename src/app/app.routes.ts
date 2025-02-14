@@ -16,16 +16,16 @@ export const routes: Routes = [
   {
     path: 'change-language',
     loadComponent: () =>
-      import(
-        './core/layout/change-language/change-language.layout'
-      ).then((m) => m.ChangeLanguageLayout),
+      import('./core/layout/change-language/change-language.layout').then(
+        (m) => m.ChangeLanguageLayout
+      ),
     children: [
       {
         path: '',
         loadChildren: () =>
-          import(
-            './domain/change-language/change-language.routes'
-          ).then((m) => m.CHANGE_LANGUAGE_ROUTES),
+          import('./domain/change-language/change-language.routes').then(
+            (m) => m.CHANGE_LANGUAGE_ROUTES
+          ),
       },
     ],
   },

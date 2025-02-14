@@ -1,17 +1,14 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { aStoreState } from '@core/infra/store/abstracts/store-state.abstract';
-import { aStore } from '@core/infra/store/abstracts/store.abstract';
 import { StoreService } from '@core/infra/store/services/store.service';
-import { LanguageCacheService } from '@domain/internationalization/caches/language.cache';
-import { iSelection } from '@domain/internationalization/interfaces/language.interface';
-import { LanguageMockservice } from '@domain/internationalization/mocks/language.mock';
-import { aLanguage } from '@domain/internationalization/abstracts/language.abstract';
-import { LanguageService } from '@domain/internationalization/services/language.service';
-import { LanguageTranslatorService } from '@domain/internationalization/services/language-translator.service';
+import { LanguageCacheService } from '@domain/change-language/caches/language.cache';
+import { iSelection } from '@domain/change-language/interfaces/language.interface';
+import { LanguageMockservice } from '@domain/change-language/mocks/language.mock';
+import { LanguageService } from '@domain/change-language/services/language.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { SelectOptionComponent } from '@widget/components/select-option/select-option.component';
+import { LanguageTranslatorService } from '@domain/change-language/services/language-translator.service';
 
 @Component({
   selector: 'app-change-language',
@@ -20,18 +17,9 @@ import { SelectOptionComponent } from '@widget/components/select-option/select-o
   standalone: true,
   imports: [CommonModule, SelectOptionComponent, TranslateModule],
   providers: [
-    {
-      provide: aStore,
-      useClass: StoreService,
-    },
-    {
-      provide: aStoreState,
-      useClass: LanguageCacheService,
-    },
-    {
-      provide: aLanguage,
-      useClass: LanguageMockservice,
-    },
+    StoreService,
+    LanguageCacheService,
+    LanguageMockservice,
     LanguageService,
     LanguageTranslatorService,
     TranslateService,
@@ -39,17 +27,19 @@ import { SelectOptionComponent } from '@widget/components/select-option/select-o
 })
 export class ChangeLanguagePage implements OnInit {
   public formControl = new FormControl('');
-  public selectEmpy = this.translate.instant('NOTE.OPTION_EMPY');
-  public default = this.translationService.getDefaultLang();
+  public selectEmpy = '';
+  public default = '';
   public selections: iSelection[] = [];
-
-  public constructor(
-    private translationService: LanguageTranslatorService,
-    private translate: TranslateService,
-    private lang: LanguageService
-  ) { }
+  private translationService: LanguageTranslatorService = inject(
+    LanguageTranslatorService
+  );
+  private translate: TranslateService = inject(TranslateService);
+  private lang: LanguageService = inject(LanguageService);
 
   public ngOnInit(): void {
+    this.selectEmpy = this.translate.instant('NOTE.OPTION_EMPY');
+    this.default = this.translationService.getDefaultLang();
+
     this.formControl.setValue(this.default);
     this.lang.getAllLanguage().subscribe((res) => {
       res.forEach((value) => {

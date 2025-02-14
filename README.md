@@ -103,7 +103,7 @@ release/v1-0-2 → Preparação de uma versão estável antes de ir para staging
 #### Mensagem para Cody
 
 ---
-to write only a commit title message to describe the changes made in all files for this diff using this pattern: `feat`, `fix`, `refactor`, `revert`, `style`, `test`, `i18n`, `initial`, `analytics`, `database`, `mock`, `build`, 'ci`, `chore` e `doc` The massage must be imperative and in lowercase.
+to write only a commit title message to describe the changes made in all files for this diff using this pattern: `feat`, `fix`, `refactor`, `revert`, `style`, `test`, `i18n`, `initial`, `analytics`, `database`, `mock`, `build`, `ci`, `chore` e `doc` The massage must be imperative and in lowercase.
 ---
 
 #### Como pensar para criar um commit
@@ -170,3 +170,95 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+# Documentação
+## Injeção de Dependência no Angular
+
+Este documento explica as diferenças entre os métodos de injeção de dependência no Angular e quando utilizar cada um.
+
+## 1. `@Inject('aLanguage') private api: LanguageService;`
+
+### Como funciona?
+O Angular permite fornecer serviços utilizando tokens personalizados, como strings ou `InjectionToken`. Esse método é utilizado quando queremos especificar manualmente qual provedor deve ser utilizado para injetar um serviço.
+
+### Exemplo:
+```typescript
+@Component({
+  selector: 'app-example',
+  providers: [{ provide: 'aLanguage', useClass: LanguageService }],
+})
+export class ExampleComponent {
+  constructor(@Inject('aLanguage') private api: LanguageService) { }
+}
+```
+
+### Quando usar?
+- Quando precisamos fornecer diferentes implementações de um mesmo serviço.
+- Quando o serviço é fornecido via um `InjectionToken`.
+- Quando trabalhamos com valores estáticos ou objetos personalizados ao invés de classes.
+
+---
+
+## 2. `constructor(private api: LanguageService) { }`
+
+### Como funciona?
+Esse é o método mais comum de injeção de dependência. O Angular injeta automaticamente o serviço com base na classe fornecida, desde que ele esteja registrado corretamente como um provider.
+
+### Exemplo:
+```typescript
+@Injectable({ providedIn: 'root' })
+export class LanguageService {
+  // ...
+}
+
+@Component({
+  selector: 'app-example',
+  templateUrl: './example.component.html'
+})
+export class ExampleComponent {
+  constructor(private api: LanguageService) { }
+}
+```
+
+### Quando usar?
+✅ Quando o serviço é singleton e está registrado globalmente (`providedIn: 'root'`).  
+✅ Quando queremos injeção automática sem configuração adicional.  
+✅ É o método recomendado na maioria dos casos.  
+
+---
+
+## 3. `private api: LanguageService = inject(LanguageService);`
+
+### Como funciona?
+A API `inject()` permite injetar dependências sem precisar do construtor. Essa abordagem funciona apenas dentro de classes que suportam injeção de dependência (`@Injectable`, `@Component`, etc.).
+
+### Exemplo:
+```typescript
+@Injectable({ providedIn: 'root' })
+export class ExampleService {
+  private api: LanguageService = inject(LanguageService);
+
+  someMethod() {
+    this.api.getLanguage();
+  }
+}
+```
+
+### Quando usar?
+✅ Em `services`, `directives` e `pipes` para evitar um construtor desnecessário.  
+✅ Quando a injeção precisa ocorrer fora do contexto de um construtor.  
+🛑 **Não pode ser usado diretamente em classes normais sem decorator Angular.**
+
+---
+
+## 🔥 Resumo das Diferenças
+
+| Abordagem | Como funciona? | Quando usar? |
+|-----------|---------------|--------------|
+| `@Inject('aLanguage')` | Injeção com um token personalizado | Quando o provider é definido manualmente com um token string/injectionToken |
+| `constructor(private api: LanguageService)` | Injeção automática pelo Angular | Método mais comum para serviços globais (`providedIn: 'root'`) |
+| `inject(LanguageService)` | Injeção sem construtor (Angular 14+) | Quando a injeção precisa ocorrer fora do construtor (services, directives, pipes) |
+
+Se for apenas um serviço comum registrado globalmente, **use a injeção no construtor** (`constructor(private api: LanguageService)`). Se precisar de mais flexibilidade, escolha `@Inject()` ou `inject()` conforme necessário. 🚀
+
+

@@ -8,4 +8,4 @@ import { RouterModule } from '@angular/router';
   imports: [RouterModule],
   standalone: true,
 })
-export class ChangeLanguageLayout { }
+export class ChangeLanguageLayout {}

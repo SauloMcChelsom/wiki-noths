@@ -1,11 +1,9 @@
-import { Observable, of } from 'rxjs';
 import * as CryptoJS from 'crypto-js';
-import { aCrypto } from '../abstracts/crypto.abstract';
 import { Injectable } from '@angular/core';
 
 @Injectable({ providedIn: 'root' })
-export class CryptoService implements aCrypto {
-  public encrypt(value: any, secretKey: string): Observable<string> {
+export class CryptoService<T> {
+  public encrypt(value: any | T, secretKey: string): string {
     let valueToEncrypt: any = value;
 
     if (typeof value === 'object') {
@@ -17,10 +15,10 @@ export class CryptoService implements aCrypto {
       secretKey
     ).toString();
 
-    return of(ciphertext);
+    return ciphertext;
   }
 
-  public decrypt(ciphertext: string, secretKey: string): Observable<any> {
+  public decrypt(ciphertext: string, secretKey: string): string {
     const bytes = CryptoJS.AES.decrypt(ciphertext, secretKey);
     let decryptedData: any;
 
@@ -30,6 +28,6 @@ export class CryptoService implements aCrypto {
       decryptedData = bytes.toString(CryptoJS.enc.Utf8);
     }
 
-    return of(decryptedData);
+    return decryptedData;
   }
 }

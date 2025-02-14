@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { aStorage } from '../abstracts/storage.abstract';
 
 @Injectable({ providedIn: 'root' })
-export class StorageSessionService implements aStorage<any> {
-  public async save(key: string, value: any): Promise<boolean> {
+export class StorageSessionService<T> {
+  public async save(key: string, value: T): Promise<boolean> {
     await sessionStorage.removeItem(key);
     await sessionStorage.setItem(key, JSON.stringify(value));
     return true;
@@ -14,7 +13,7 @@ export class StorageSessionService implements aStorage<any> {
     return true;
   }
 
-  public async fetch(key: string): Promise<any> {
+  public async fetch(key: string): Promise<T> {
     return await JSON.parse(sessionStorage.getItem(key)!);
   }
 }

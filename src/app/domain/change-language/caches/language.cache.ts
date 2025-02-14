@@ -3,18 +3,17 @@ import { AppState } from '@core/infra/store/interfaces/state.model';
 import { Observable, of } from 'rxjs';
 import { environment } from 'src/assets/environments/enviroment';
 import { iLanguage } from '../interfaces/language.interface';
-import { aStoreState } from '@core/infra/store/abstracts/store-state.abstract';
-import { aStore } from '@core/infra/store/abstracts/store.abstract';
 import { eLoadingState } from '@core/infra/store/enums/state.enum';
 import { TIME_1_SECOND } from '@shared/constants/time.constant';
+import { StoreService } from '@core/infra/store/services/store.service';
 
 type AppStateLang = AppState<iLanguage>;
 
 @Injectable({
   providedIn: 'root',
 })
-export class LanguageCacheService implements aStoreState<iLanguage> {
-  public constructor(private store: aStore<AppStateLang>) {
+export class LanguageCacheService {
+  public constructor(private store: StoreService<iLanguage>) {
     this.app();
     setTimeout(() => {
       this.app();
@@ -65,10 +64,6 @@ export class LanguageCacheService implements aStoreState<iLanguage> {
   }
 
   public delete(): Observable<boolean> {
-    this.store.delete((state: AppStateLang) => ({
-      ...state,
-      items: (state.items = []),
-    }));
-    return of(true);
+    return this.store.delete();
   }
 }
