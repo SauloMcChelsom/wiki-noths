@@ -2,18 +2,18 @@ import { Injectable } from '@angular/core';
 
 @Injectable({ providedIn: 'root' })
 export class StorageLocalService<T> {
-  public async save(key: string, value: any | T): Promise<boolean> {
-    await localStorage.removeItem(key);
-    await localStorage.setItem(key, JSON.stringify(value));
+  public save(key: string, value: any | T): boolean {
+    localStorage.removeItem(key);
+    localStorage.setItem(key, JSON.stringify(value));
     return true;
   }
 
-  public async delete(key: string): Promise<boolean> {
-    await localStorage.removeItem(key);
+  public delete(key: string): boolean {
+    localStorage.removeItem(key);
     return true;
   }
 
-  public async fetch(key: string): Promise<any | T> {
-    return await JSON.parse(localStorage.getItem(key)!);
+  public fetch(key: string): Promise<any | T> {
+    return JSON.parse(localStorage.getItem(key)!);
   }
 }
