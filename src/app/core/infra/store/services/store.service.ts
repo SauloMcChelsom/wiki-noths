@@ -14,6 +14,7 @@ import { AppState } from '../interfaces/state.model';
 import { StorageLocalService } from '@core/infra/storage/services/storage-local.service';
 import { StorageSessionService } from '@core/infra/storage/services/storage-session.service';
 import { CryptoService } from '@core/infra/crypto/services/crypto.service';
+import { TypeObjectUtil } from '@shared/utils/type-object.util';
 
 @Injectable({
   providedIn: 'root',
@@ -93,18 +94,18 @@ export class StoreService<T> {
   }
 
   private persistState(state: AppState<T>): Observable<boolean> {
-    let dataToStore = state;
+    let dataToStore: AppState<T> | string = state;
 
     // Se houver uma chave de criptografia, encripta os dados antes de salvar
     if (state.storage.encryptionKey) {
-      const crypted: any = this.crypto.encrypt(
-        state.items,
-        state.storage.encryptionKey
-      );
       dataToStore = {
         ...state,
-        items: [crypted],
+        items: state.items,
       };
+      dataToStore = this.crypto.encrypt(
+        dataToStore,
+        state.storage.encryptionKey
+      );
     }
 
     if (state.storage.storageStrategy === eStorageStrategy.LOCAL_STORAGE) {
@@ -150,12 +151,11 @@ export class StoreService<T> {
     }
 
     if (!storedData) return null;
-
     // Se houver chave de criptografia, descriptografa os dados
     const decryptedData: any = encryptionKey
       ? this.crypto.decrypt(storedData, encryptionKey)
       : storedData;
 
-    return JSON.parse(decryptedData);
+    return TypeObjectUtil.setValue(decryptedData);
   }
 }
