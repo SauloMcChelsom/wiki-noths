@@ -21,7 +21,6 @@ export class CryptoService<T> {
   }
 
   public decrypt(ciphertext: string, secretKey: string): any {
-
     //substitui todas as aspas simples (') e duplas (") por uma string vazia.
     ciphertext = ciphertext.replace(/['"]/g, '');
 

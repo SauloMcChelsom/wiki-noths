@@ -36,7 +36,7 @@ export class StoreService<T> {
     private storage: StorageLocalService<AppState<T>>,
     private session: StorageSessionService<AppState<T>>,
     private crypto: CryptoService<AppState<T>>
-  ) { }
+  ) {}
 
   public initialState(
     initialState: AppState<T>

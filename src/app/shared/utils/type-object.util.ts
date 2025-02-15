@@ -36,10 +36,10 @@ export class TypeObjectUtil {
   }
 
   public static getType(value: any): string {
-    if (value === null) return "null";
-    if (Array.isArray(value)) return "array";
-    if (value instanceof Date) return "date";
-    if (value instanceof Function) return "function";
+    if (value === null) return 'null';
+    if (Array.isArray(value)) return 'array';
+    if (value instanceof Date) return 'date';
+    if (value instanceof Function) return 'function';
     return typeof value; // Retorna 'string', 'number', 'boolean', 'object', etc.
   }
 }

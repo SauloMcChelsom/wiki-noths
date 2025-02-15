@@ -47,45 +47,45 @@ describe('setValue', function () {
 
 describe('getType', () => {
   it('deve retornar "string" para valores string', () => {
-    expect(TypeObjectUtil.getType("Hello")).toBe("string");
-    expect(TypeObjectUtil.getType("")).toBe("string");
+    expect(TypeObjectUtil.getType('Hello')).toBe('string');
+    expect(TypeObjectUtil.getType('')).toBe('string');
   });
 
   it('deve retornar "number" para valores numéricos', () => {
-    expect(TypeObjectUtil.getType(42)).toBe("number");
-    expect(TypeObjectUtil.getType(-3.14)).toBe("number");
-    expect(TypeObjectUtil.getType(0)).toBe("number");
+    expect(TypeObjectUtil.getType(42)).toBe('number');
+    expect(TypeObjectUtil.getType(-3.14)).toBe('number');
+    expect(TypeObjectUtil.getType(0)).toBe('number');
   });
 
   it('deve retornar "boolean" para valores booleanos', () => {
-    expect(TypeObjectUtil.getType(true)).toBe("boolean");
-    expect(TypeObjectUtil.getType(false)).toBe("boolean");
+    expect(TypeObjectUtil.getType(true)).toBe('boolean');
+    expect(TypeObjectUtil.getType(false)).toBe('boolean');
   });
 
   it('deve retornar "object" para objetos', () => {
-    expect(TypeObjectUtil.getType({})).toBe("object");
-    expect(TypeObjectUtil.getType({ key: "value" })).toBe("object");
+    expect(TypeObjectUtil.getType({})).toBe('object');
+    expect(TypeObjectUtil.getType({ key: 'value' })).toBe('object');
   });
 
   it('deve retornar "array" para arrays', () => {
-    expect(TypeObjectUtil.getType([])).toBe("array");
-    expect(TypeObjectUtil.getType([1, 2, 3])).toBe("array");
+    expect(TypeObjectUtil.getType([])).toBe('array');
+    expect(TypeObjectUtil.getType([1, 2, 3])).toBe('array');
   });
 
   it('deve retornar "date" para objetos Date', () => {
-    expect(TypeObjectUtil.getType(new Date())).toBe("date");
+    expect(TypeObjectUtil.getType(new Date())).toBe('date');
   });
 
   it('deve retornar "function" para funções', () => {
-    expect(TypeObjectUtil.getType(() => { })).toBe("function");
-    expect(TypeObjectUtil.getType(function () { })).toBe("function");
+    expect(TypeObjectUtil.getType(() => {})).toBe('function');
+    expect(TypeObjectUtil.getType(function () {})).toBe('function');
   });
 
   it('deve retornar "null" para valores nulos', () => {
-    expect(TypeObjectUtil.getType(null)).toBe("null");
+    expect(TypeObjectUtil.getType(null)).toBe('null');
   });
 
   it('deve retornar "undefined" para valores indefinidos', () => {
-    expect(TypeObjectUtil.getType(undefined)).toBe("undefined");
+    expect(TypeObjectUtil.getType(undefined)).toBe('undefined');
   });
 });
