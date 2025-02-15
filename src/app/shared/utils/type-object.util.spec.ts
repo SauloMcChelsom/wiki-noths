@@ -77,8 +77,16 @@ describe('getType', () => {
   });
 
   it('deve retornar "function" para funções', () => {
-    expect(TypeObjectUtil.getType(() => {})).toBe('function');
-    expect(TypeObjectUtil.getType(function () {})).toBe('function');
+    expect(
+      TypeObjectUtil.getType(() => {
+        /**/
+      })
+    ).toBe('function');
+    expect(
+      TypeObjectUtil.getType(function () {
+        /**/
+      })
+    ).toBe('function');
   });
 
   it('deve retornar "null" para valores nulos', () => {

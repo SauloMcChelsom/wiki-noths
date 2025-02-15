@@ -206,8 +206,7 @@ describe('StoreService', () => {
       },
     };
 
-    spyOn(localStorage, 'getItem').and.callFake((key: string) => {
-      //console.log(`Chave acessada no localStorage: ${key}`);
+    spyOn(localStorage, 'getItem').and.callFake(() => {
       return 'encryptedData';
     });
 
@@ -249,7 +248,7 @@ describe('StoreService', () => {
       },
     };
 
-    spyOn(localStorage, 'getItem').and.callFake((key: string) => {
+    spyOn(localStorage, 'getItem').and.callFake(() => {
       return JSON.stringify(state); // Simula os dados armazenados no localStorage state;
     });
 
@@ -279,7 +278,7 @@ describe('StoreService', () => {
       },
     };
 
-    spyOn(localStorage, 'getItem').and.callFake((key: string) => {
+    spyOn(localStorage, 'getItem').and.callFake(() => {
       return JSON.stringify({
         items: [
           {
