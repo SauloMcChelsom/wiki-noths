@@ -36,7 +36,7 @@ export class StoreService<T> {
     private storage: StorageLocalService<AppState<T>>,
     private session: StorageSessionService<AppState<T>>,
     private crypto: CryptoService<AppState<T>>
-  ) {}
+  ) { }
 
   public initialState(
     initialState: AppState<T>
@@ -51,7 +51,9 @@ export class StoreService<T> {
       map(selector),
       startWith(this.getFromStorage()),
       tap((state) => {
-        this.stateStore.next(state);
+        if (state?.items) {
+          this.stateStore.next(state);
+        }
       }),
       switchMap(() => of(this.stateStore.getValue()!)),
       map(selector)
@@ -73,7 +75,14 @@ export class StoreService<T> {
   public update(
     updateFn: (state: AppState<T>) => AppState<T>
   ): Observable<boolean> {
-    return this.save(updateFn);
+    const state = this.getFromStorage();
+    if (state?.items) {
+      this.save(updateFn)
+      const newState = updateFn(state!);
+      this.stateStore.next(newState);
+      return this.save(updateFn);
+    }
+    return of(false)
   }
 
   public deletById(
@@ -155,7 +164,6 @@ export class StoreService<T> {
     const decryptedData: any = encryptionKey
       ? this.crypto.decrypt(storedData, encryptionKey)
       : storedData;
-
     return TypeObjectUtil.setValue(decryptedData);
   }
 }
