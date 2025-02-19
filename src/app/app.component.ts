@@ -18,6 +18,7 @@ export class AppComponent implements OnInit {
 
   public ngOnInit(): void {
     this.titleService.init();
+    this.renderer.addClass(document.body, 'app');
     this.renderer.addClass(document.body, 'laranjinha');
     this.renderer.addClass(document.body, 'dark'); //dark/light
   }
