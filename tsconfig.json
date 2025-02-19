@@ -19,15 +19,24 @@
     "target": "ES2022",
     "module": "ES2022",
     "useDefineForClassFields": false,
+    "allowSyntheticDefaultImports": true,
     "lib": [
       "ES2022",
       "dom"
     ],
     "paths": {
-      "@shared/*":["src/app/shared/*"],
-      "@domain/*":["src/app/domain/*"],
-      "@core/*":["src/app/core/*"],
-      "@widget/*":["src/app/widget/*"],
+      "@shared/*": [
+        "src/app/shared/*"
+      ],
+      "@domain/*": [
+        "src/app/domain/*"
+      ],
+      "@core/*": [
+        "src/app/core/*"
+      ],
+      "@widget/*": [
+        "src/app/widget/*"
+      ],
     }
   },
   "angularCompilerOptions": {
