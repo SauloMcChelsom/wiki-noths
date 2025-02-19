@@ -78,5 +78,7 @@
   "NOTE.EMAIL_NOT_FOUND": "Email not found.",
   "NOTE.FIREBASE_FAILED": "Firebase operation failed.",
   "NOTE.NOT_DEFAULT_LANGUAGE": "Não possui idioma padrão",
-  "NOTE.FAILED_DECRYPT": "Failed to decrypt."
+  "NOTE.FAILED_DECRYPT": "Failed to decrypt.",
+  "NOTE.ABA_LOGIN": "Sign in to the system",
+  "NOTE.ABA_REGISTER": "Sign up to the system"
 }

@@ -1,12 +1,13 @@
 import { eStorageStrategy } from '@core/infra/storage/enums/storage.enum';
+import { ePort, ePreview, eProtocol, eVersion } from '@shared/interfaces/url.interface';
 
 export const environment = {
   production: false,
   domain: 'localhost',
-  protocol: 'http://',
-  version: '/v1',
-  preview: '/private',
-  port: ':4200',
+  protocol: eProtocol.HTTP,
+  version: eVersion.v1,
+  preview: ePreview.private,
+  port: ePort._3000,
 
   payloadStorage: {
     currentUser: {

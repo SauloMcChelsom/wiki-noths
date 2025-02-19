@@ -78,5 +78,7 @@
     "NOTE.EMAIL_NOT_FOUND": "Correo electrónico no encontrado.",
     "NOTE.FIREBASE_FAILED": "Error en la operación de Firebase.",
     "NOTE.NOT_DEFAULT_LANGUAGE": "Não possui idioma padrão",
-    "NOTE.FAILED_DECRYPT": "Falha ao descriptografar"
+    "NOTE.FAILED_DECRYPT": "Falha ao descriptografar",
+    "NOTE.ABA_LOGIN": "Faça login no sistema",
+    "NOTE.ABA_REGISTER": "Registre-se no sistema"
 }

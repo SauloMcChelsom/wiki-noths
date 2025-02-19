@@ -5,10 +5,18 @@ export const AUTH_ROUTES: Routes = [
     path: '',
     loadComponent: () =>
       import('./pages/login/login.page').then((m) => m.LoginPage),
+    data: { title: 'NOTE.ABA_LOGIN' },
   },
   {
-    path: 'sign-up',
+    path: 'login',
     loadComponent: () =>
-      import('./pages/sign-up/sign-up.page').then((m) => m.SignUpPage),
+      import('./pages/login/login.page').then((m) => m.LoginPage),
+    data: { title: 'NOTE.ABA_LOGIN' },
+  },
+  {
+    path: 'register',
+    loadComponent: () =>
+      import('./pages/register/register.page').then((m) => m.RegisterPage),
+    data: { title: 'NOTE.ABA_REGISTER' },
   },
 ];

@@ -1,0 +1,68 @@
+<div class="auth-register background-blur pt-default pb-default">
+  <div class="grid flex-column" style="align-content: center;">
+    <div class="card-size">
+      <div class="mat-app-background pt-xxsmall pb-xxsmall">
+        <app-button-cancat icon="west" (click)="back()"></app-button-cancat>
+      </div>
+    </div>
+    <app-card [appColor]="'--app-neutral-10'" class="card-size">
+      <div>
+        <app-snackbar-alert-static [openSnackBar]="openSnackBar" [closeSnackBar]="closeSnackBar">
+        </app-snackbar-alert-static>
+        <div class="grid flex-column">
+          <div class="col">
+            <div class="box text-center text-large primary-300 mb-default mt-default">
+              Criar uma nova conta
+            </div>
+          </div>
+          <div class="col">
+            <app-inputs [formControl]="nameUser.formControl" [title]="nameUser.title"
+              [placeholder]="nameUser.placeholder" [erroFill]="nameUser.erroFill" [erroRequired]="nameUser.erroRequired"
+              [type]="nameUser.type" [isRequired]="nameUser.isRequired" [minLength]="nameUser.minLength"></app-inputs>
+          </div>
+          <div class="col">
+            <app-inputs [formControl]="lastNameUser.formControl" [title]="lastNameUser.title"
+              [placeholder]="lastNameUser.placeholder" [erroFill]="lastNameUser.erroFill"
+              [erroRequired]="lastNameUser.erroRequired" [type]="lastNameUser.type"
+              [isRequired]="lastNameUser.isRequired" [minLength]="lastNameUser.minLength"></app-inputs>
+          </div>
+          <div class="col">
+            <app-dynamic-date [formControl]="birthdayUser.formControl" [locale]="birthdayUser.locale!"
+              [mask]="birthdayUser.mask" [maxDate]="birthdayUser.maxDate" [minDate]="birthdayUser.minDate"
+              placeholder="birthdayUser.placeholder" [requiredField]="birthdayUser.requiredField"
+              [title]="birthdayUser.title"></app-dynamic-date>
+          </div>
+          <div class="col">
+            <div class="pb-xmedium">
+              <app-button-toggle appButtonToggLabelStyleWidthFull [multiple]="genderUser.multiple"
+                [options]="genderUser.options" [formControl]="genderUser.formControl"
+                (selectionChange)="onSingleSelectionChange($event)">
+              </app-button-toggle>
+            </div>
+          </div>
+          <div class="col">
+            <app-inputs [formControl]="emailUser.formControl" [title]="emailUser.title"
+              [placeholder]="emailUser.placeholder" [erroFill]="emailUser.erroFill"
+              [erroRequired]="emailUser.erroRequired" [type]="emailUser.type" [isRequired]="emailUser.isRequired"
+              [minLength]="emailUser.minLength"></app-inputs>
+          </div>
+          <div class="col">
+            <app-inputs [formControl]="passwordUser.formControl" [title]="passwordUser.title"
+              [placeholder]="passwordUser.placeholder" [erroFill]="passwordUser.erroFill"
+              [erroRequired]="passwordUser.erroRequired" [type]="passwordUser.type"
+              [isRequired]="passwordUser.isRequired" [minLength]="passwordUser.minLength"></app-inputs>
+          </div>
+          <div class="col mb-xmedium">
+            <app-button-form label="Cadastre-se" [load]="buttonFormLoad" (click)="onSubmit()">
+            </app-button-form>
+          </div>
+        </div>
+      </div>
+    </app-card>
+    <app-card [appColor]="'--app-neutral-10'" class="card-size mt-default">
+      <div class="text-center text-default color-default">
+        Já sou cadastrado, <span class="primary-300 link" [routerLink]="SIGN_IN">quero entrar!</span>
+      </div>
+    </app-card>
+  </div>
+</div>
