@@ -29,4 +29,20 @@ export const routes: Routes = [
       },
     ],
   },
+  {
+    path: 'change-theme',
+    loadComponent: () =>
+      import('./core/layout/change-theme/change-theme.layout').then(
+        (m) => m.ChangeThemeLayout
+      ),
+    children: [
+      {
+        path: '',
+        loadChildren: () =>
+          import('./domain/change-theme/change-theme.routes').then(
+            (m) => m.CHANGE_THEME_ROUTES
+          ),
+      },
+    ],
+  },
 ];
